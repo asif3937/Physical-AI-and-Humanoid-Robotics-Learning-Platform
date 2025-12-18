@@ -21,20 +21,37 @@ function ChatPage() {
     setIsLoading(true);
 
     try {
-      // In a real implementation, this would call your RAG backend
-      // For now, we'll simulate a response
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Call the backend RAG API
+      const response = await fetch('http://localhost:8000/api/v1/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          session_id: 'frontend-session', // In a real app, you'd manage sessions properly
+          query: inputValue,
+          mode: 'full_book', // Use full-book RAG mode
+          book_id: 'textbook-content' // Default book ID - would be dynamic in production
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
 
       const aiResponse = {
         id: Date.now() + 1,
-        text: `I received your question: "${inputValue}". In a real implementation, this would connect to the RAG system to provide contextually relevant answers from the textbook content.`,
+        text: data.answer || "Sorry, I couldn't generate a response.",
         sender: 'ai'
       };
       setMessages(prev => [...prev, aiResponse]);
     } catch (error) {
+      console.error('Error sending message:', error);
       const errorMessage = {
         id: Date.now() + 1,
-        text: "Sorry, I encountered an error processing your request. Please try again.",
+        text: "Sorry, I encountered an error processing your request. The backend might not be running or properly configured.",
         sender: 'ai'
       };
       setMessages(prev => [...prev, errorMessage]);

@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Database
+*.db
+*.db-journal
+
+# Backend specific
+backend/__pycache__/
+backend/api/__pycache__/
+backend/config/__pycache__/
+backend/models/__pycache__/
+backend/services/__pycache__/
+backend/utils/__pycache__/
+backend/rag_chatbot.db
+backend/rag_chatbot.log
+
+# Backend temporary files
+backend/.env
+backend/.env.local
+
+# Specifications temporary files
+specs/*/temp/
+specs/*/*.tmp
+
+# History temporary files
+history/scratch/
+.history/
+
+# Temporary agent files
+.qwen/memory/
+.qwen/cache/
+.specify/memory/tmp/
+
+# Local configuration
+config.local
+local.properties

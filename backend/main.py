@@ -1,45 +1,38 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import List, Optional
-import uvicorn
-import os
-from dotenv import load_dotenv
-
-from api.chat import router as chat_router
-from api.health import router as health_router
+from api.rag.routes.chat import router as chat
+from api.health import router as health
 from config.settings import settings
-
-# Load environment variables
-load_dotenv()
+from config.database import engine
+from models import Base  # Import all models for table creation
 
 app = FastAPI(
-    title="AI Textbook RAG API",
-    description="Retrieval-Augmented Generation API for the AI-Native Textbook",
+    title="RAG Chatbot for Book Content",
+    description="A Retrieval-Augmented Generation chatbot that answers questions based strictly on book content",
     version="1.0.0"
 )
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.ALLOWED_ORIGINS,
+    allow_origins=settings.ALLOWED_ORIGINS,  # Use settings from config
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    # Add exposed headers to allow frontend to see response headers if needed
+    expose_headers=["Access-Control-Allow-Origin"]
 )
 
-# Include API routers
-app.include_router(chat_router, prefix="/api/v1", tags=["chat"])
-app.include_router(health_router, prefix="/api/v1", tags=["health"])
+# Create all database tables on startup
+@app.on_event("startup")
+def startup_event():
+    Base.metadata.create_all(bind=engine)
+    print("Database tables created successfully")
+
+# Include API routes
+app.include_router(chat, prefix="/api/v1", tags=["chat"])
+app.include_router(health, prefix="/api/v1", tags=["health"])
 
 @app.get("/")
-async def root():
-    return {"message": "AI Textbook RAG API", "version": "1.0.0"}
-
-if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        host=settings.HOST,
-        port=settings.PORT,
-        reload=settings.DEBUG
-    )
+def read_root():
+    return {"message": "Welcome to the RAG Chatbot API for Book Content"}

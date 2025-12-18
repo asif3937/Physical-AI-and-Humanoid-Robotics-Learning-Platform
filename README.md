@@ -35,19 +35,12 @@ The platform features an integrated AI chatbot powered by Retrieval-Augmented Ge
 - **Hosting**: Railway or Render
 - **API**: RESTful endpoints for chat and health monitoring
 
-## 🚀 Deployment
+## 🚀 Quick Start
 
-### Frontend (GitHub Pages)
-1. The Docusaurus site is configured for GitHub Pages deployment
-2. GitHub Actions workflow automatically builds and deploys on commits to main branch
-3. See `textbook/.github/workflows/deploy.yml` for configuration
-
-### Backend (Railway/Render)
-1. Containerized with Docker
-2. Deployable to Railway or Render with provided configurations
-3. Environment variables configured for production
-
-## 🛠️ Development
+### Prerequisites
+- Node.js (v20+ for frontend)
+- Python (v3.9+ for backend)
+- Docker (for local vector database)
 
 ### Frontend Development
 ```bash
@@ -60,7 +53,50 @@ npm start
 ```bash
 cd backend
 pip install -r requirements.txt
+docker-compose up -d  # To start Qdrant vector database
 uvicorn main:app --reload
+```
+
+## 🚀 Deployment
+
+### Frontend (GitHub Pages)
+1. The Docusaurus site is configured for GitHub Pages deployment
+2. GitHub Actions workflow automatically builds and deploys on commits to main branch
+3. See `textbook/.github/workflows/deploy.yml` for configuration
+
+### Backend (Railway/Render)
+1. Containerized with Docker
+2. Deployable to Railway or Render with provided configurations
+3. Environment variables configured for production
+
+## 🛠️ Environment Setup
+
+### Backend Environment Variables
+```bash
+cp backend/.env.example backend/.env
+# Edit backend/.env with your configuration
+```
+
+Required variables:
+- `DATABASE_URL`: PostgreSQL database connection string
+- `QDRANT_URL`: Qdrant vector database URL
+- `QDRANT_API_KEY`: Qdrant API key (if using cloud)
+- `EMBEDDING_MODEL`: Model for text embeddings (default: all-MiniLM-L6-v2)
+- `LLM_MODEL`: Model for response generation
+- `OPENAI_API_KEY` or equivalent for chosen LLM provider
+
+## 🧪 Testing
+
+### Backend
+```bash
+cd backend
+pytest
+```
+
+### Frontend
+```bash
+cd textbook
+npm run build
 ```
 
 ## 📋 Project Status

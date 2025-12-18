@@ -6,7 +6,7 @@ from typing import Dict, Any
 
 from config.settings import settings
 from services.vector_db import VectorDBService
-from services.embedding import EmbeddingService
+from services.embedding_service import EmbeddingService
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

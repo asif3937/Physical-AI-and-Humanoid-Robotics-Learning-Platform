@@ -74,13 +74,29 @@ All components have been implemented and are ready for deployment:
 - ✅ Security and rate limiting
 - ✅ Complete documentation and launch checklist
 
-## Next Steps
+## Deployment Instructions
 
-1. Deploy the frontend to GitHub Pages
-2. Deploy the backend to Railway or Render
-3. Configure the vector database with textbook content
-4. Test the complete system integration
-5. Monitor system performance and user engagement
+1. **Deploy the frontend to GitHub Pages**
+   - Ensure repository is connected to GitHub Pages
+   - Workflow will automatically deploy on pushes to main branch
+
+2. **Deploy the backend to Railway or Render**
+   - Connect your repository to your chosen platform
+   - Configure environment variables using .env.example as reference
+   - Deploy the application
+
+3. **Initialize the vector database with textbook content**
+   - Use the ingestion API endpoint to load textbook content
+   - Verify content is retrievable through the chat interface
+
+4. **Test the complete system integration**
+   - Verify frontend can communicate with backend
+   - Test chat functionality end-to-end
+   - Confirm health checks are passing
+
+5. **Monitor system performance and user engagement**
+   - Set up monitoring for production deployments
+   - Track key metrics for user engagement
 
 ## Project Status: COMPLETED
 
