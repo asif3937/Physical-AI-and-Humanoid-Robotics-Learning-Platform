@@ -15,16 +15,12 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-username.github.io', // GitHub Pages URL
+  url: 'https://your-project-name.vercel.app', // Vercel deployment URL
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/my-ai-textbook/',
+  baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-username', // Usually your GitHub org/user name.
-  projectName: 'my-ai-textbook', // Usually your repo name.
-  deploymentBranch: 'gh-pages', // The branch to deploy to
+  // Vercel deployment doesn't require GitHub Pages config
+  // organizationName and projectName are not needed for Vercel
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -47,6 +43,8 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // Show the last update time on each document
+          showLastUpdateTime: true,
         },
         blog: {
           showReadingTime: true,
@@ -84,8 +82,8 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'textbookSidebar',
+          type: 'doc',
+          docId: 'intro',
           position: 'left',
           label: 'Textbook',
         },
@@ -100,7 +98,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/your-username/my-ai-textbook',
+          href: 'https://github.com/asif3937/Physical-AI-and-Humanoid-Robotics-Learning-Platform',
           label: 'GitHub',
           position: 'right',
         },
@@ -110,11 +108,11 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Resources',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'GitHub',
+              href: 'https://github.com/asif3937/Physical-AI-and-Humanoid-Robotics-Learning-Platform',
             },
           ],
         },
@@ -144,7 +142,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/asif3937/Physical-AI-and-Humanoid-Robotics-Learning-Platform',
             },
           ],
         },
