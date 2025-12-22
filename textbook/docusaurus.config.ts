@@ -15,9 +15,10 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-project-name.vercel.app', // Vercel deployment URL
+  url: 'https://textbook-tan.vercel.app', // Vercel deployment URL
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl: '/',
+  trailingSlash: false,
 
   // Vercel deployment doesn't require GitHub Pages config
   // organizationName and projectName are not needed for Vercel
